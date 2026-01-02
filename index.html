@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Šišenskih 7 - Modern Living</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Custom Styles */
+        :root {
+            --primary-dark: #212529;
+            --transition-speed: 0.3s;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            overflow-x: hidden;
+        }
+
+        /* Elegant scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Language Switcher - Updated */
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05rem;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            color: #000;
+        }
+
+        .lang-btn.active {
+            color: #000;
+            font-weight: 600;
+        }
+
+        .lang-divider {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin: 0 0.2rem;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            z-index: 1050;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: #000;
+            width: 0%;
+            transition: width 0.2s ease-out;
+        }
+
+        /* Navigation */
+        .navbar {
+            transition: background-color var(--transition-speed);
+            padding: 0.7rem 1rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        .navbar-brand img {
+            height: 36px;
+        }
+
+        .nav-link {
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.05rem;
+            transition: all var(--transition-speed);
+            color: #6c757d;
+            margin: 0 0.5rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+        }
+
+        .nav-link:hover {
+            background-color: #f8f9fa;
+            color: #000;
+        }
+
+        .nav-link.active {
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* Hero section */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/backgrounds/1.png');
+            background-size: cover;
+            background-position: center 30%;
+            z-index: -2;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+            z-index: -1;
+        }
+
+        .hero-logo {
+            max-width: 80%;
+            max-height: 40vh;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .scroll-down-btn {
+            width: 48px;
+            height: 48px;
+            color: white;
+            border: 1px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+            transition: all var(--transition-speed);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .scroll-down-btn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        section.bg-light {
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            font-weight: 300;
+            margin-bottom: 2rem;
+            font-size: 2.25rem;
+        }
+
+        /* Feature icons */
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+        }
+
+        /* Cards */
+        .card {
+            overflow: hidden;
+            transition: transform var(--transition-speed);
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-overlay {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: white;
+            color: black;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Gallery */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            transition: transform var(--transition-speed);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            background-color: rgba(0, 0, 0, 0.3);
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 80%;
+        }
+
+        .lightbox-image-container {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(100% - 120px);
+        }
+
+        .lightbox-image {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-image.active {
+            opacity: 1;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 2010;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            width: 50px;
+            height: 60px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .lightbox-prev {
+            margin-right: 10px;
+        }
+
+        .lightbox-next {
+            margin-left: 10px;
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .lightbox-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .lightbox-counter {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* For mobile screens */
+        @media (max-width: 768px) {
+            .lightbox-image-container {
+                width: calc(100% - 80px);
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                width: 40px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        footer img {
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 48px;
+            height: 48px;
+            background-color: black;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed);
+            opacity: 0;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background-color: #333;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Media queries */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+
+            .language-switcher {
+                margin-right: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom border-light-subtle">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">
+                <img src="images/logo/sisenskih7.svg" alt="Šišenskih 7" id="nav-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" data-lang-key="nav_about">O projektu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#types" data-lang-key="nav_types">Tipi hiš</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery" data-lang-key="nav_gallery">Galerija</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features" data-lang-key="nav_features">Prednosti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#location" data-lang-key="nav_location">Lokacija</a>
+                    </li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="sl">SL</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero-section">
+        <div class="container text-center">
+            <img src="images/logo/sisenskih7.svg" alt="Šišenskih 7" class="hero-logo" id="hero-logo"
+                style="filter: brightness(0) invert(1);">
+            <h2 class="fw-light" data-lang-key="hero_subtitle">Sodobno bivanje v mestnem okolju</h2>
+            <button class="scroll-down-btn" onclick="scrollToSection('about')">
+                <i class="bi bi-chevron-down"></i>
+            </button>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 data-lang-key="about_title">O projektu</h2>
+                    <p class="lead mb-4" data-lang-key="about_lead">
+                        Šišenskih 7 je ekskluzivni stanovanjski projekt, ki obsega 7 sodobnih hiš v nizu, zasnovanih s
+                        poudarkom na kakovosti, prostorski učinkovitosti in sodobnem bivanju.
+                    </p>
+                    <p class="mb-4" data-lang-key="about_p1">
+                        Projekt vključuje dva različna tipa hiš v nizu, od katerih vsak ponuja edinstveno razporeditev,
+                        ob ohranjanju splošne arhitekturne harmonije razvoja. Vse enote so zasnovane z veliko naravne
+                        svetlobe, zasebnimi zunanjimi prostori in vrhunskimi zaključki.
+                    </p>
+                    <p class="mb-5" data-lang-key="about_p2">
+                        Projekt se nahaja v zaželeni soseski in zagotavlja popolno ravnovesje med mestno povezljivostjo
+                        in stanovanjsko mirnostjo, kar ga naredi idealen dom za sodobne družine in profesionalce.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row text-center mt-5">
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="bi bi-house-door fs-3"></i>
+                    </div>
+                    <h5 class="mt-3" data-lang-key="about_feature1_title">7 hiš v nizu</h5>
+                    <p class="text-muted" data-lang-key="about_feature1_text">Ekskluzivna stanovanjska gradnja z
+                        omejenim številom enot</p>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="bi bi-grid-3x3 fs-3"></i>
+                    </div>
+                    <h5 class="mt-3" data-lang-key="about_feature2_title">2 tlorisa</h5>
+                    <p class="text-muted" data-lang-key="about_feature2_text">Izbirate lahko med tipom A in tipom B</p>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="bi bi-people fs-3"></i>
+                    </div>
+                    <h5 class="mt-3" data-lang-key="about_feature3_title">Družinsko bivanje</h5>
+                    <p class="text-muted" data-lang-key="about_feature3_text">Zasnovano za sodoben družinski življenjski
+                        slog</p>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="feature-icon">
+                        <i class="bi bi-geo-alt fs-3"></i>
+                    </div>
+                    <h5 class="mt-3" data-lang-key="about_feature4_title">Odlična lokacija</h5>
+                    <p class="text-muted" data-lang-key="about_feature4_text">Popolnoma umeščeno v zaželeni soseski</p>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12 text-center">
+                        <h4 class="mb-4" data-lang-key="site_plan">Situacijski načrt</h4>
+                        <div class="site-plan-container">
+                            <img src="images/backgrounds/site-plan.jpg" alt="Šišenskih 7 Situacijski načrt" class="img-fluid shadow-sm">
+                            <div class="mt-3">
+                                <small class="text-muted" data-lang-key="site_plan_caption">Razporeditev hiš v nizu</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="types" class="bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-lang-key="types_title">Tipi hiš</h2>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-5 mb-4">
+                    <div class="card h-100">
+                        <div class="position-relative">
+                            <img src="./images/TIP-A/tip-a-1.jpg" class="card-img-top"
+                                alt="Type A Townhouse">
+                            <div class="card-img-tag" data-lang-key="type_a">Tip A</div>
+                        </div>
+                        <div class="card-body">
+                            <h4 data-lang-key="type_a_title">Hiša tipa A</h4>
+                            <div class="row mb-4 mt-3">
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted d-block" data-lang-key="area">Površina</small>
+                                    <span class="fw-medium">186.36 m²</span>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted d-block" data-lang-key="bedrooms">Spalnice</small>
+                                    <span class="fw-medium">4</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted d-block" data-lang-key="bathrooms">Kopalnice</small>
+                                    <span class="fw-medium">2.5</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted d-block" data-lang-key="parking">Parkirišča</small>
+                                    <span class="fw-medium" data-lang-key="parking_spaces">2 mesti</span>
+                                </div>
+                            </div>
+
+                            <p class="text-muted mb-4" data-lang-key="type_a_desc">
+                                Tip A ponuja prostorno razporeditev s tremi nadstropji, vključno s terasno etažo. Ponuja
+                                velik dnevni prostor, štiri spalnice in zasebne zunanje prostore.
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="text-decoration-none border-bottom border-dark pb-1"
+                                    data-lang-key="view_floor_plans">Oglejte si tlorise</a>
+                                <small class="text-muted" data-lang-key="parcele_1_3">Parcele: 1, 2, 3</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 mb-4">
+                    <div class="card h-100">
+                        <div class="position-relative">
+                            <img src="./images/TIP-B/tip-b-7.jpg" class="card-img-top"
+                                alt="Type B Townhouse">
+                            <div class="card-img-tag" data-lang-key="type_b">Tip B</div>
+                        </div>
+                        <div class="card-body">
+                            <h4 data-lang-key="type_b_title">Hiša tipa B</h4>
+                            <div class="row mb-4 mt-3">
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted d-block" data-lang-key="area">Površina</small>
+                                    <span class="fw-medium">199.65 m²</span>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted d-block" data-lang-key="bedrooms">Spalnice</small>
+                                    <span class="fw-medium">4</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted d-block" data-lang-key="bathrooms">Kopalnice</small>
+                                    <span class="fw-medium">2.5</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted d-block" data-lang-key="parking">Parkirišča</small>
+                                    <span class="fw-medium" data-lang-key="parking_spaces">2 mesti</span>
+                                </div>
+                            </div>
+
+                            <p class="text-muted mb-4" data-lang-key="type_b_desc">
+                                Tip B ponuja nekoliko večjo postavitev s poudarkom na odprtem tlorisu. Vključuje večje
+                                terasne prostore in alternativno razporeditev sob.
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="text-decoration-none border-bottom border-dark pb-1"
+                                    data-lang-key="view_floor_plans">Oglejte si tlorise</a>
+                                <small class="text-muted" data-lang-key="parcele_4_7">Parcele: 4, 5, 6, 7</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	    <section id="safety" class="bg-light">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 data-lang-key="safety_title">Vaš varen in miren dom ob dinamični poti</h2>
+                    <p class="lead" data-lang-key="safety_lead">
+                        Zavedamo se, da lokacija ob železniški progi prinaša vprašanja o varnosti in udobju bivanja. Prav zato smo pri projektu »Šišenskih 7« namenili izjemno pozornost ukrepom, ki zagotavljajo miren, varen in kakovosten dom, ki presega standarde.
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h4 class="text-center mb-4" data-lang-key="safety_subtitle">Celovita zaščita pred hrupom in vplivi iz okolice:</h4>
+                    <ul class="list-unstyled">
+                        <li class="d-flex mb-3"><div class="me-3 pt-1"><i class="bi bi-volume-mute fs-4 text-dark"></i></div><div><strong data-lang-key="safety_feature1_title">Posebna protihrupna ograja:</strong> <span data-lang-key="safety_feature1_text">Med vašim domom in železnico bo zgrajena sodobna protihrupna ograja, zasnovana z akustičnimi absorberji v kombinaciji opeke in lesa, ki bo učinkovito zmanjšala hrup iz okolice.</span></div></li>
+                        <li class="d-flex mb-3"><div class="me-3 pt-1"><i class="bi bi-bounding-box-circles fs-4 text-dark"></i></div><div><strong data-lang-key="safety_feature2_title">Premišljena zasnova prostorov:</strong> <span data-lang-key="safety_feature2_text">Arhitekturna zasnova je optimizirana za kar največje udobje. Bivalni prostori v pritličju so zaščiteni z novo ograjo, medtem ko so spalni prostori v višjih nadstropjih orientirani stran od železnice, proti mirnejši zahodni strani. Na vzhodni fasadi je pred okni predvidena tudi polprosojna mreža iz fasadne opeke, ki dodatno zmanjšuje hrupno obremenitev.</span></div></li>
+                        <li class="d-flex mb-3"><div class="me-3 pt-1"><i class="bi bi-layers fs-4 text-dark"></i></div><div><strong data-lang-key="safety_feature3_title">Vrhunska izolacija:</strong> <span data-lang-key="safety_feature3_text">Celoten ovoj stavbe – od fasade in strehe do oken – je zasnovan z vrhunsko zvočno izolacijo, ki zagotavlja mir v notranjosti vašega doma. Notranje predelne stene so prav tako zvočno izolirane za zagotavljanje zasebnosti med prostori.</span></div></li>
+                    </ul>
+    
+                    <h4 class="text-center mt-5 mb-4" data-lang-key="safety_subtitle2">Varnost na prvem mestu:</h4>
+                    <ul class="list-unstyled">
+                        <li class="d-flex mb-3"><div class="me-3 pt-1"><i class="bi bi-rulers fs-4 text-dark"></i></div><div><strong data-lang-key="safety_feature4_title">Ustrezen odmik:</strong> <span data-lang-key="safety_feature4_text">Objekti so od osi najbližjega tira odmaknjeni več, kot to določajo predpisi, s čimer je zagotovljena dodatna varnost.</span></div></li>
+                        <li class="d-flex mb-3"><div class="me-3 pt-1"><i class="bi bi-shield-shaded fs-4 text-dark"></i></div><div><strong data-lang-key="safety_feature5_title">Zaščita pred vplivi elektrifikacije:</strong> <span data-lang-key="safety_feature5_text">Projekt vključuje vse potrebne tehnične rešitve za zaščito pred vplivi blodečih tokov iz elektrificirane proge, vključno z ustrezno katodno zaščito, kar zagotavlja dolgoročno varnost in trajnost objektov.</span></div></li>
+                        <li class="d-flex mb-3"><div class="me-3 pt-1"><i class="bi bi-emoji-smile fs-4 text-dark"></i></div><div><strong data-lang-key="safety_feature6_title">Brezskrbnost bivanja:</strong> <span data-lang-key="safety_feature6_text">Investitor je zavezan k izvedbi vseh ukrepov za blaženje morebitnih vibracij, kar zagotavlja popolno udobje bivanja v neposredni bližini obstoječe in prihodnje posodobljene železniške proge.</span></div></li>
+                    </ul>
+                    <p class="text-center mt-4" data-lang-key="safety_conclusion">Z izbiro doma v soseski »Šišenskih 7« izbirate premišljeno načrtovan bivalni prostor, kjer so varnost, mir in udobje postavljeni na prvo mesto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="quality">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 data-lang-key="quality_title">Brezkompromisna lakovost gradnje za vaše udobje</h2>
+                    <p class="lead" data-lang-key="quality_lead">
+                        Pri snovanju projekta »Šišenskih 7« smo se osredotočili na uporabo visokokakovostnih in trajnostnih materialov, ki zagotavljajo dolgoročno udobje, energetsko učinkovitost in nizke stroške vzdrževanja. Vaš novi dom je zgrajen z mislijo na prihodnost.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3"><div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle" style="width: 48px; height: 48px;"><i class="bi bi-bricks fs-5"></i></div></div>
+                                <div>
+                                    <h5 data-lang-key="quality_feature1_title">Trdna in Vzdržljiva Konstrukcija</h5>
+                                    <p class="text-muted" data-lang-key="quality_feature1_text">Osnovo vsake hiše predstavlja armiranobetonska temeljna plošča, nosilne stene iz armiranega betona ter monolitne betonske medetažne in strešne plošče. Takšna gradnja zagotavlja izjemno potresno varnost, stabilnost in dolgo življenjsko dobo.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3"><div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle" style="width: 48px; height: 48px;"><i class="bi bi-palette fs-5"></i></div></div>
+                                <div>
+                                    <h5 data-lang-key="quality_feature2_title">Kakovostna fasada</h5>
+                                    <p class="text-muted" data-lang-key="quality_feature2_text">Zunanji videz in zaščito objekta zagotavlja kombinacija ometane kontaktne fasade in fasadne klinker opeke v pritličnem delu, ki nudi večjo mehansko odpornost in preprosto čiščenje.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3"><div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle" style="width: 48px; height: 48px;"><i class="bi bi-shield-check fs-5"></i></div></div>
+                                <div>
+                                    <h5 data-lang-key="quality_feature3_title">Zanesljiva streha</h5>
+                                    <p class="text-muted" data-lang-key="quality_feature3_text">Za ravno streho je predvidena uporaba visokokakovostne PVC folije, kot je Sika Siklaplan, zaščitene s plastjo prodca, kar zagotavlja trajno vodotesnost.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex">
+                                 <div class="me-3"><div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle" style="width: 48px; height: 48px;"><i class="bi bi-window-split fs-5"></i></div></div>
+                                <div>
+                                    <h5 data-lang-key="quality_feature4_title">Vrhunsko stavbno pohištvo</h5>
+                                    <p class="text-muted" data-lang-key="quality_feature4_text">Vgrajena bodo lesena okna s troslojno izolacijsko zasteklitvijo, ki zagotavljajo minimalne toplotne izgube in odlično zvočno izolativnost.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6 mb-4">
+                            <div class="d-flex">
+                                 <div class="me-3"><div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle" style="width: 48px; height: 48px;"><i class="bi bi-fire fs-5"></i></div></div>
+                                <div>
+                                    <h5 data-lang-key="quality_feature5_title">Učinkovito ogrevanje</h5>
+                                    <p class="text-muted" data-lang-key="quality_feature5_text">Objekti bodo priključeni na zanesljiv sistem daljinskega ogrevanja (vročevod), kar omogoča učinkovito in okolju prijaznejše ogrevanje ter pripravo sanitarne vode.</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3"><div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle" style="width: 48px; height: 48px;"><i class="bi bi-gem fs-5"></i></div></div>
+                                <div>
+                                    <h5 data-lang-key="quality_feature6_title">Premišljeni notranji materiali</h5>
+                                    <p class="text-muted" data-lang-key="quality_feature6_text">V notranjosti bodo uporabljeni izključno certificirani materiali. V sanitarijah je predvidena kakovostna keramika z visokim standardom nedrsnosti (R9-R11), kar zagotavlja varnost in trajnost.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <p class="text-center mt-4" data-lang-key="quality_conclusion">Vaš dom v soseski »Šišenskih 7« ni le prostor za bivanje, temveč naložba v kakovost, trajnost in brezskrbno prihodnost.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2 class="text-center mb-5" data-lang-key="gallery_title">Galerija</h2>
+
+            <div class="row g-4">
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="0">
+                        <img src="./images/backgrounds/2.png" class="img-fluid" alt="Outside">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="1">
+                        <img src="./images/backgrounds/3.png" class="img-fluid" alt="Outside">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="2">
+                        <img src="./images/backgrounds/4.png" class="img-fluid" alt="Outside">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="3">
+                        <img src="./images/backgrounds/5.png" class="img-fluid" alt="Terrace">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="4">
+                        <img src="./images/backgrounds/6.png" class="img-fluid" alt="Outside">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="5">
+                        <img src="./images/backgrounds/7.png" class="img-fluid" alt="Terrace">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="6">
+                        <img src="./images/backgrounds/8.png" class="img-fluid" alt="Living Room">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="7">
+                        <img src="./images/backgrounds/9.png" class="img-fluid" alt="Outside Terrace">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="8">
+                        <img src="./images/backgrounds/10.png" class="img-fluid" alt="Garage">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="9">
+                        <img src="./images/backgrounds/11.png" class="img-fluid" alt="Terrace">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="10">
+                        <img src="./images/backgrounds/12.png" class="img-fluid" alt="Kitchen with Dining Area and Living Room">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item" data-gallery-index="11">
+                        <img src="./images/backgrounds/13.png" class="img-fluid" alt="Living Room">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen text-white fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="text-center mt-5">
+					<button class="btn btn-dark px-4 py-2" id="view-all-gallery" data-lang-key="view_all_images">Vse slike</button>
+				</div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <div class="lightbox-container">
+                <button class="lightbox-prev">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <div class="lightbox-image-container">
+                    <img src="" alt="" class="lightbox-image">
+                </div>
+                <button class="lightbox-next">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+            <div class="lightbox-caption">
+                <p class="lightbox-title"></p>
+                <p class="lightbox-counter"></p>
+            </div>
+        </div>
+    </div>
+
+    <section id="features" class="bg-light">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 data-lang-key="features_title">Prednosti in lastnosti</h2>
+                    <p class="lead" data-lang-key="features_lead">
+                        Šišenskih 7 združuje elegantno zasnovo s praktično funkcionalnostjo in ponuja vrsto značilnosti,
+                        ki izboljšujejo vašo bivalno izkušnjo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle"
+                                        style="width: 48px; height: 48px;">
+                                        <i class="bi bi-lightning fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 data-lang-key="feature1_title">Energetska učinkovitost</h5>
+                                    <p class="text-muted" data-lang-key="feature1_text">Visoko zmogljiva izolacija in
+                                        energetsko učinkoviti sistemi zmanjšujejo vpliv na okolje in stroške energije.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle"
+                                        style="width: 48px; height: 48px;">
+                                        <i class="bi bi-house-gear-fill fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 data-lang-key="feature2_title">Pripravljeno za pametni dom</h5>
+                                    <p class="text-muted" data-lang-key="feature2_text">Napeljava za integracijo
+                                        pametnega doma z možnostmi za nadzor klime, razsvetljave in varnosti.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle"
+                                        style="width: 48px; height: 48px;">
+                                        <i class="bi bi-tree fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 data-lang-key="feature3_title">Zasebne terase</h5>
+                                    <p class="text-muted" data-lang-key="feature3_text">Prostorne zunanje bivalne
+                                        površine, popolne za sprostitev in zabavo.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle"
+                                        style="width: 48px; height: 48px;">
+                                        <i class="bi bi-fullscreen fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 data-lang-key="feature4_title">Prostorno bivanje</h5>
+                                    <p class="text-muted" data-lang-key="feature4_text">Odprti tlorisi z visokimi stropi
+                                        ustvarjajo svetle, zračne bivalne prostore.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle"
+                                        style="width: 48px; height: 48px;">
+                                        <i class="bi bi-stars fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 data-lang-key="feature5_title">Premium materiali</h5>
+                                    <p class="text-muted" data-lang-key="feature5_text">Visokokakovostni zaključki,
+                                        vključno s parketnimi tlemi, po meri izdelanimi omarami in vrhunskimi napravami.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="d-flex align-items-center justify-content-center bg-dark text-white rounded-circle"
+                                        style="width: 48px; height: 48px;">
+                                        <i class="bi bi-shield-lock fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 data-lang-key="feature6_title">Varno okolje</h5>
+                                    <p class="text-muted" data-lang-key="feature6_text">Zaprta skupnost z varnimi
+                                        dostopnimi sistemi in obilno zunanjo razsvetljavo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 data-lang-key="location_title">Lokacija</h2>
+                    <p class="lead mb-4" data-lang-key="location_lead">
+                        Šišenskih 7 se nahaja v zaželeni soseski, ki ponuja popolno ravnovesje med mestno povezanostjo
+                        in mirnostjo stanovanjskega okolja.
+                    </p>
+
+                    <div class="mb-4">
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded-circle"
+                                    style="width: 40px; height: 40px;">
+                                    <i class="bi bi-clock"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="mb-1" data-lang-key="location_feature1_title">Odlična dostopnost</h5>
+                                <p class="text-muted mb-0" data-lang-key="location_feature1_text">Le nekaj minut od
+                                    glavnih prometnih poti in možnosti javnega prevoza.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded-circle"
+                                    style="width: 40px; height: 40px;">
+                                    <i class="bi bi-shop"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="mb-1" data-lang-key="location_feature2_title">Nakupovanje in prehrana</h5>
+                                <p class="text-muted mb-0" data-lang-key="location_feature2_text">Obkroženo s
+                                    premijskimi nakupovalnimi središči, restavracijami in kavarnami.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded-circle"
+                                    style="width: 40px; height: 40px;">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="mb-1" data-lang-key="location_feature3_title">Izobraževanje in storitve</h5>
+                                <p class="text-muted mb-0" data-lang-key="location_feature3_text">Blizu vrhunskih šol,
+                                    zdravstvenih ustanov in bistvenih storitev.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded-circle"
+                                    style="width: 40px; height: 40px;">
+                                    <i class="bi bi-tree"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="mb-1" data-lang-key="location_feature4_title">Rekreacija</h5>
+                                <p class="text-muted mb-0" data-lang-key="location_feature4_text">Enostaven dostop do
+                                    parkov, fitness centrov in kulturnih znamenitosti.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                        <i class="bi bi-geo-alt fs-1 text-muted"></i>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-dark text-white">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 data-lang-key="contact_title">Vas zanima Šišenskih 7?</h2>
+                    <p class="mb-5" data-lang-key="contact_text">
+                        Kontaktirajte nas za več informacij o razpoložljivih enotah in dogovor za osebno predstavitev.
+                    </p>
+
+                    <div class="row mb-5">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <div class="p-4 bg-black bg-opacity-50 rounded h-100">
+                                <i class="bi bi-telephone mb-3 fs-3"></i>
+                                <h5 data-lang-key="call_us">Pokličite nas</h5>
+                                <p class="text-white-50">+41 222 279</p>
+                            </div>
+                        </div> 	
+
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <div class="p-4 bg-black bg-opacity-50 rounded h-100">
+                                <i class="bi bi-building mb-3 fs-3"></i>
+                                <h5 data-lang-key="seller">Prodajalec</h5>
+                                <p class="text-white-50">MEDIOGRADNJA<br>INŽENIRING d.o.o.<br>Hacquetova ulica 1A,<br>1000 Ljubljana</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="p-4 bg-black bg-opacity-50 rounded h-100">
+                                <i class="bi bi-geo-alt mb-3 fs-3"></i>
+                                <h5 data-lang-key="visit">Ogled</h5>
+                                <p class="text-white-50" data-lang-key="visit_text">Samo po dogovoru</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-4 mb-md-0">
+                    <img src="images/logo/sisenskih7.svg" alt="Šišenskih 7" id="footer-logo">
+                </div>
+
+                <div class="text-center text-md-end text-white-50">
+                    <p class="mb-1">&copy; <span id="current-year"></span> Šišenskih 7. <a href="https://github.com/eXamqle">eXamqle</a> · <span data-lang-key="copyright_text"></span></p>
+                    <p class="mb-0" data-lang-key="design_text">Zasnovano s pozornostjo do vsakega detajla.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // DOM Elements
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const backToTopButton = document.getElementById('backToTop');
+        const languageButtons = document.querySelectorAll('.lang-btn');
+
+        // Default language
+        let currentLanguage = localStorage.getItem('sisenskih7_lang') || 'sl';
+
+        // Language translations
+        const translations = {
+            sl: {
+                // Navigation
+                nav_about: "O projektu",
+                nav_types: "Tipi hiš",
+                nav_gallery: "Galerija",
+                nav_features: "Prednosti",
+                nav_location: "Lokacija",
+
+                // Hero
+                hero_subtitle: "Sodobno bivanje v mestnem okolju",
+
+                // About
+                about_title: "O projektu",
+                about_lead: "Šišenskih 7 je ekskluzivni stanovanjski projekt, ki obsega 7 sodobnih hiš v nizu, zasnovanih s poudarkom na kakovosti, prostorski učinkovitosti in sodobnem bivanju.",
+                about_p1: "Projekt vključuje dva različna tipa hiš v nizu, od katerih vsak ponuja edinstveno razporeditev, ob ohranjanju splošne arhitekturne harmonije razvoja. Vse enote so zasnovane z veliko naravne svetlobe, zasebnimi zunanjimi prostori in vrhunskimi zaključki.",
+                about_p2: "Projekt se nahaja v zaželeni soseski in zagotavlja popolno ravnovesje med mestno povezljivostjo in stanovanjsko mirnostjo, kar ga naredi idealen dom za sodobne družine in profesionalce.",
+                about_feature1_title: "7 hiš v nizu",
+                about_feature1_text: "Ekskluzivna stanovanjska gradnja z omejenim številom enot",
+                about_feature2_title: "2 tlorisa",
+                about_feature2_text: "Izbirate lahko med tipom A in tipom B",
+                about_feature3_title: "Družinsko bivanje",
+                about_feature3_text: "Zasnovano za sodoben družinski življenjski slog",
+                about_feature4_title: "Odlična lokacija",
+                about_feature4_text: "Popolnoma umeščeno v zaželeni soseski",
+                site_plan: "Situacijski načrt",
+                site_plan_caption: "Razporeditev hiš v nizu projekta Šišenskih 7",
+
+                // Types
+                types_title: "Tipi hiš",
+                type_a_title: "Hiša tipa A",
+                type_b_title: "Hiša tipa B",
+                area: "Površina",
+                bedrooms: "Spalnice",
+                bathrooms: "Kopalnice",
+                parking: "Parkirišča",
+                parking_spaces: "2 mesti",
+                type_a_desc: "Tip A ponuja prostorno razporeditev s tremi nadstropji, vključno s terasno etažo. Ponuja velik dnevni prostor, štiri spalnice in zasebne zunanje prostore.",
+                type_b_desc: "Tip B ponuja nekoliko večjo postavitev s poudarkom na odprtem tlorisu. Vključuje večje terasne prostore in alternativno razporeditev sob.",
+                view_floor_plans: "Oglejte si tlorise",
+                parcels: "Parcele",
+                type_b: "Tip B",
+                type_a: "Tip A",
+                parcele_1_3: "Parcele: 1, 2, 3",
+                parcele_4_7: "Parcele: 4, 5, 6, 7",
+
+                // Gallery
+                gallery_title: "Galerija",
+                view_all_images: "Odpri galerijo",
+                
+                // Safety Section
+                safety_title: "Vaš varen in miren dom ob dinamični poti",
+                safety_lead: "Zavedamo se, da lokacija ob železniški progi prinaša vprašanja o varnosti in udobju bivanja. Prav zato smo pri projektu »Šišenskih 7« namenili izjemno pozornost ukrepom, ki zagotavljajo miren, varen in kakovosten dom, ki presega standarde.",
+                safety_subtitle: "Celovita zaščita pred hrupom in vplivi iz okolice:",
+                safety_feature1_title: "Posebna protihrupna ograja:",
+                safety_feature1_text: "Med vašim domom in železnico bo zgrajena sodobna protihrupna ograja, zasnovana z akustičnimi absorberji v kombinaciji opeke in lesa, ki bo učinkovito zmanjšala hrup iz okolice.",
+                safety_feature2_title: "Premišljena zasnova prostorov:",
+                safety_feature2_text: "Arhitekturna zasnova je optimizirana za kar največje udobje. Bivalni prostori v pritličju so zaščiteni z novo ograjo, medtem ko so spalni prostori v višjih nadstropjih orientirani stran od železnice, proti mirnejši zahodni strani. Na vzhodni fasadi je pred okni predvidena tudi polprosojna mreža iz fasadne opeke, ki dodatno zmanjšuje hrupno obremenitev.",
+                safety_feature3_title: "Vrhunska izolacija:",
+                safety_feature3_text: "Celoten ovoj stavbe – od fasade in strehe do oken – je zasnovan z vrhunsko zvočno izolacijo, ki zagotavlja mir v notranjosti vašega doma. Notranje predelne stene so prav tako zvočno izolirane za zagotavljanje zasebnosti med prostori.",
+                safety_subtitle2: "Varnost na prvem mestu:",
+                safety_feature4_title: "Ustrezen odmik:",
+                safety_feature4_text: "Objekti so od osi najbližjega tira odmaknjeni več kot to določajo predpisi, s čimer je zagotovljena dodatna varnost.",
+                safety_feature5_title: "Zaščita pred vplivi elektrifikacije:",
+                safety_feature5_text: "Projekt vključuje vse potrebne tehnične rešitve za zaščito pred vplivi blodečih tokov iz elektrificirane proge, vključno z ustrezno katodno zaščito, kar zagotavlja dolgoročno varnost in trajnost objektov.",
+                safety_feature6_title: "Brezskrbnost bivanja:",
+                safety_feature6_text: "Investitor je zavezan k izvedbi vseh ukrepov za blaženje morebitnih vibracij, kar zagotavlja popolno udobje bivanja v neposredni bližini obstoječe in prihodnje posodobljene železniške proge.",
+                safety_conclusion: "Z izbiro doma v soseski »Šišenskih 7« izbirate premišljeno načrtovan bivalni prostor, kjer so varnost, mir in udobje postavljeni na prvo mesto.",
+
+                // Quality Section
+                quality_title: "Brezkompromisna kakovost gradnje za vaše udobje",
+                quality_lead: "Pri snovanju projekta »Šišenskih 7« smo se osredotočili na uporabo visokokakovostnih in trajnostnih materialov, ki zagotavljajo dolgoročno udobje, energetsko učinkovitost in nizke stroške vzdrževanja. Vaš novi dom je zgrajen z mislijo na prihodnost.",
+                quality_feature1_title: "Trdna in vzdržljiva konstrukcija",
+                quality_feature1_text: "Osnovo vsake hiše predstavlja armiranobetonska temeljna plošča, nosilne stene iz armiranega betona ter monolitne betonske medetažne in strešne plošče. Takšna gradnja zagotavlja izjemno potresno varnost, stabilnost in dolgo življenjsko dobo.",
+                quality_feature2_title: "Kakovostna fasada",
+                quality_feature2_text: "Zunanji videz in zaščito objekta zagotavlja kombinacija ometane kontaktne fasade in fasadne klinker opeke v pritličnem delu, ki nudi večjo mehansko odpornost in preprosto čiščenje.",
+                quality_feature3_title: "Zanesljiva streha",
+                quality_feature3_text: "Za ravno streho je predvidena uporaba visokokakovostne PVC folije, kot je Sika Siklaplan, zaščitene s plastjo prodca, kar zagotavlja trajno vodotesnost.",
+                quality_feature4_title: "Vrhunsko stavbno pohištvo",
+                quality_feature4_text: "Vgrajena bodo lesena okna s troslojno izolacijsko zasteklitvijo, ki zagotavljajo minimalne toplotne izgube in odlično zvočno izolativnost.",
+                quality_feature5_title: "Učinkovito ogrevanje",
+                quality_feature5_text: "Objekti bodo priključeni na zanesljiv sistem daljinskega ogrevanja (vročevod), kar omogoča učinkovito in okolju prijaznejše ogrevanje ter pripravo sanitarne vode.",
+                quality_feature6_title: "Premišljeni notranji materiali",
+                quality_feature6_text: "V notranjosti bodo uporabljeni izključno certificirani materiali. V sanitarijah je predvidena kakovostna keramika z visokim standardom nedrsnosti (R9-R11), kar zagotavlja varnost in trajnost.",
+                quality_conclusion: "Vaš dom v soseski »Šišenskih 7« ni le prostor za bivanje, temveč naložba v kakovost, trajnost in brezskrbno prihodnost.",
+
+
+                // Features
+                features_title: "Prednosti in lastnosti",
+                features_lead: "Šišenskih 7 združuje elegantno zasnovo s praktično funkcionalnostjo in ponuja vrsto značilnosti, ki izboljšujejo vašo bivalno izkušnjo.",
+                feature1_title: "Energetska učinkovitost",
+                feature1_text: "Visoko zmogljiva izolacija in energetsko učinkoviti sistemi zmanjšujejo vpliv na okolje in stroške energije.",
+                feature2_title: "Pripravljeno za pametni dom",
+                feature2_text: "Napeljava za integracijo pametnega doma z možnostmi za nadzor klime, razsvetljave in varnosti.",
+                feature3_title: "Zasebne terase",
+                feature3_text: "Prostorne zunanje bivalne površine, popolne za sprostitev in zabavo.",
+                feature4_title: "Prostorno bivanje",
+                feature4_text: "Odprti tlorisi z visokimi stropi ustvarjajo svetle, zračne bivalne prostore.",
+                feature5_title: "Premium materiali",
+                feature5_text: "Visokokakovostni zaključki, vključno s parketnimi tlemi, po meri izdelanimi omarami in vrhunskimi napravami.",
+                feature6_title: "Varno okolje",
+                feature6_text: "Zaprta skupnost z varnimi dostopnimi sistemi in obilno zunanjo razsvetljavo.",
+
+                // Location
+                location_title: "Lokacija",
+                location_lead: "Šišenskih 7 se nahaja v zaželeni soseski, ki ponuja popolno ravnovesje med mestno povezanostjo in mirnostjo stanovanjskega okolja.",
+                location_feature1_title: "Odlična dostopnost",
+                location_feature1_text: "Le nekaj minut od glavnih prometnih poti in možnosti javnega prevoza.",
+                location_feature2_title: "Nakupovanje in prehrana",
+                location_feature2_text: "Obkroženo s nakupovalnimi središči, restavracijami in kavarnami.",
+                location_feature3_title: "Izobraževanje in storitve",
+                location_feature3_text: "V bližini šol, zdravstvenih ustanov in bistvenih storitev.",
+                location_feature4_title: "Rekreacija",
+                location_feature4_text: "Enostaven dostop do parkov, fitness centrov in kulturnih znamenitosti.",
+
+                // Contact
+                contact_title: "Vas zanima Šišenskih 7?",
+                contact_text: "Kontaktirajte nas za več informacij o razpoložljivih enotah in dogovor za osebno predstavitev.",
+                call_us: "Pokličite nas",
+                seller: "Prodajalec",
+                visit: "Ogled",
+                visit_text: "Samo po dogovoru",
+
+                // Footer
+                copyright_text: "Vse pravice pridržane.",
+                design_text: "Zasnovano s pozornostjo do vsakega detajla."
+            },
+            en: {
+                // Navigation
+                nav_about: "About",
+                nav_types: "Types",
+                nav_gallery: "Gallery",
+                nav_features: "Features",
+                nav_location: "Location",
+
+                // Hero
+                hero_subtitle: "Modern Living in Urban Environment",
+
+                // About
+                about_title: "About the Project",
+                about_lead: "Šišenskih 7 is an exclusive residential development consisting of 7 modern townhouses designed with a focus on quality, space efficiency, and contemporary living.",
+                about_p1: "The project features two distinct townhouse types, each offering a unique layout while maintaining the overall architectural harmony of the development. All units are designed with abundant natural light, private outdoor spaces, and premium finishes.",
+                about_p2: "Located in a desirable neighborhood, Šišenskih 7 provides a perfect balance between urban connectivity and residential tranquility, making it an ideal home for modern families and professionals.",
+                about_feature1_title: "7 Townhouses",
+                about_feature1_text: "Exclusive residential development with limited units",
+                about_feature2_title: "2 Layouts",
+                about_feature2_text: "Type A and Type B layouts to choose from",
+                about_feature3_title: "Family Living",
+                about_feature3_text: "Designed for modern family lifestyles",
+                about_feature4_title: "Prime Location",
+                about_feature4_text: "Perfectly positioned in a desirable neighborhood",
+                site_plan: "Site Plan",
+                site_plan_caption: "Layout of the houses in Šišenskih 7 project",
+
+                // Types
+                types_title: "House Types",
+                type_a_title: "Type A Townhouse",
+                type_b_title: "Type B Townhouse",
+                area: "Area",
+                bedrooms: "Bedrooms",
+                bathrooms: "Bathrooms",
+                parking: "Parking",
+                parking_spaces: "2 spaces",
+                type_a_desc: "Type A features a spacious layout with three floors including terrace level. It offers a large living area, four bedrooms, and private outdoor spaces.",
+                type_b_desc: "Type B offers a slightly larger layout with an emphasis on open-plan living. It features larger terrace spaces and an alternative room arrangement.",
+                view_floor_plans: "View Floor Plans",
+                parcels: "Parcels",
+                type_b: "Type B",
+                type_a: "Type A",
+                parcele_1_3: "Object: 1, 2, 3",
+                parcele_4_7: "Object: 4, 5, 6, 7",
+
+                // Gallery
+                gallery_title: "Gallery",
+                view_all_images: "Open Gallery",
+                
+                // Safety Section
+                safety_title: "Your Safe and Peaceful Home Along a Dynamic Path",
+                safety_lead: "We are aware that a location next to a railway line raises questions about the safety and comfort of living. That is why in the 'Šišenskih 7' project, we have paid exceptional attention to measures that ensure a peaceful, safe, and high-quality home that exceeds standards.",
+                safety_subtitle: "Comprehensive Protection from Noise and Environmental Influences:",
+                safety_feature1_title: "Special anti-noise fence:",
+                safety_feature1_text: "A modern anti-noise fence will be built between your home and the railway, designed with acoustic absorbers in a combination of brick and wood, which will effectively reduce noise from the surroundings.",
+                safety_feature2_title: "Thoughtful space design:",
+                safety_feature2_text: "The architectural design is optimized for maximum comfort. The living areas on the ground floor are protected by the new fence, while the sleeping areas on the upper floors are oriented away from the railway, towards the quieter west side. A semi-transparent mesh of facade brick is also planned in front of the windows on the eastern facade, which further reduces the noise load.",
+                safety_feature3_title: "Superior insulation:",
+                safety_feature3_text: "The entire building envelope – from the facade and roof to the windows – is designed with superior sound insulation, ensuring peace inside your home. The internal partition walls are also sound-insulated to ensure privacy between rooms.",
+                safety_subtitle2: "Safety First:",
+                safety_feature4_title: "Adequate clearance:",
+                safety_feature4_text: "The buildings are set back from the axis of the nearest track more than required by regulations, which ensures additional safety.",
+                safety_feature5_title: "Protection from electrification effects:",
+                safety_feature5_text: "The project includes all necessary technical solutions to protect against the effects of stray currents from the electrified line, including appropriate cathodic protection, which ensures the long-term safety and durability of the buildings.",
+                safety_feature6_title: "Worry-free living:",
+                safety_feature6_text: "The investor is committed to implementing all measures to mitigate any potential vibrations, ensuring complete living comfort in the immediate vicinity of the existing and future modernized railway line.",
+                safety_conclusion: "By choosing a home in the 'Šišenskih 7' neighborhood, you are choosing a thoughtfully planned living space where safety, peace, and comfort are put first.",
+
+                // Quality Section
+                quality_title: "Uncompromising Construction Quality for Your Comfort",
+                quality_lead: "When designing the 'Šišenskih 7' project, we focused on using high-quality and sustainable materials that ensure long-term comfort, energy efficiency, and low maintenance costs. Your new home is built with the future in mind.",
+                quality_feature1_title: "Solid and Durable Construction",
+                quality_feature1_text: "The basis of each house is a reinforced concrete foundation slab, load-bearing walls of reinforced concrete, and monolithic concrete intermediate and roof slabs. Such construction ensures exceptional seismic safety, stability, and a long lifespan.",
+                quality_feature2_title: "Quality facade",
+                quality_feature2_text: "The external appearance and protection of the building are ensured by a combination of a plastered contact facade and facade clinker bricks in the ground-floor section, which offers greater mechanical resistance and easy cleaning.",
+                quality_feature3_title: "Reliable roof",
+                quality_feature3_text: "For the flat roof, the use of high-quality PVC foil, such as Sika Sikaplan, is planned, protected by a layer of gravel, which ensures permanent watertightness.",
+                quality_feature4_title: "Superior building furniture",
+                quality_feature4_text: "Wooden windows with triple-layer insulating glazing will be installed, ensuring minimal heat loss and excellent sound insulation.",
+                quality_feature5_title: "Efficient heating",
+                quality_feature5_text: "The buildings will be connected to a reliable district heating system (hot water pipeline), which enables efficient and environmentally friendly heating and preparation of sanitary water.",
+                quality_feature6_title: "Thoughtful interior materials",
+                quality_feature6_text: "Only certified materials will be used in the interior. In the sanitary facilities, high-quality ceramics with a high anti-slip standard (R9-R11) are planned, which ensures safety and durability.",
+                quality_conclusion: "Your home in the 'Šišenskih 7' neighborhood is not just a place to live, but an investment in quality, sustainability, and a carefree future.",
+
+
+                // Features
+                features_title: "Features & Amenities",
+                features_lead: "Šišenskih 7 combines elegant design with practical functionality, offering a range of features to enhance your living experience.",
+                feature1_title: "Energy Efficient",
+                feature1_text: "High-performance insulation and energy-efficient systems reduce environmental impact and utility costs.",
+                feature2_title: "Smart Home Ready",
+                feature2_text: "Pre-wired for smart home integration with options for climate, lighting, and security control.",
+                feature3_title: "Private Terraces",
+                feature3_text: "Spacious outdoor living areas perfect for relaxation and entertainment.",
+                feature4_title: "Spacious Living",
+                feature4_text: "Open floor plans with high ceilings create bright, airy living spaces.",
+                feature5_title: "Premium Materials",
+                feature5_text: "High-quality finishes including hardwood floors, custom cabinetry, and premium appliances.",
+                feature6_title: "Secure Environment",
+                feature6_text: "Gated community with secure access systems and ample outdoor lighting.",
+
+                // Location
+                location_title: "Location",
+                location_lead: "Šišenskih 7 is ideally situated in a coveted neighborhood that offers the perfect balance between urban connectivity and residential tranquility.",
+                location_feature1_title: "Excellent Accessibility",
+                location_feature1_text: "Just minutes from major transportation routes and public transit options.",
+                location_feature2_title: "Shopping & Dining",
+                location_feature2_text: "Surrounded by premium shopping centers, restaurants, and cafes.",
+                location_feature3_title: "Education & Services",
+                location_feature3_text: "Close to top-rated schools, medical facilities, and essential services.",
+                location_feature4_title: "Recreation",
+                location_feature4_text: "Easy access to parks, fitness centers, and cultural attractions.",
+
+                // Contact
+                contact_title: "Interested in Šišenskih 7?",
+                contact_text: "Contact us to learn more about available units and schedule a personal presentation.",
+                call_us: "Call Us",
+                seller: "Seller",
+                visit: "Visit",
+                visit_text: "By appointment only",
+
+                // Footer
+                copyright_text: "All rights reserved.",
+                design_text: "Designed with attention to every detail."
+            }
+        };
+
+        // Update page language
+        function updateLanguage(lang) {
+            // Set active language button
+            languageButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Update all text elements with data-lang-key attribute
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Save language preference
+            localStorage.setItem('sisenskih7_lang', lang);
+            currentLanguage = lang;
+        }
+
+        // Gallery elements
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const viewAllButton = document.getElementById('view-all-gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+        const lightboxTitle = document.querySelector('.lightbox-title');
+        const lightboxCounter = document.querySelector('.lightbox-counter');
+
+        // Gallery data
+        const galleryImages = [
+            { src: './images/backgrounds/2.png', title: 'Building Exterior', title_sl: 'Zunanjost stavbe' },
+            { src: './images/backgrounds/3.png', title: 'Building Exterior', title_sl: 'Zunanjost stavbe' },
+            { src: './images/backgrounds/4.png', title: 'Building Exterior', title_sl: 'Zunanjost stavbe' },
+            { src: './images/backgrounds/5.png', title: 'Private Terrace', title_sl: 'Zasebna terasa' },
+            { src: './images/backgrounds/6.png', title: 'Outside Terrace', title_sl: 'Zunanjost terasa' },
+            { src: './images/backgrounds/7.png', title: 'Terrace', title_sl: 'Terasa' },
+            { src: './images/backgrounds/8.png', title: 'Living Room', title_sl: 'Dnevna Soba' },
+            { src: './images/backgrounds/9.png', title: 'Outside Terrace', title_sl: 'Zunanjost terasa' },
+            { src: './images/backgrounds/10.png', title: 'Garage', title_sl: 'Garaža' },
+            { src: './images/backgrounds/11.png', title: 'Terrace', title_sl: 'Terasa' },
+            { src: './images/backgrounds/12.png', title: 'Kitchen with Dining Area and Living Room', title_sl: 'Kuhinja z Jedilnico in Dnevno Sobo' },
+            { src: './images/backgrounds/13.png', title: 'Living Room', title_sl: 'Dnevna Soba' }
+        ];
+
+        // Floor plan data
+        const floorPlansA = [
+            { src: './images/TIP-A/tip-a-1.jpg', title: 'Type A - Object 1', title_sl: 'Tip A - Objekt 1', parcel: '1, 2, 3' },
+            { src: './images/TIP-A/tip-a-2.jpg', title: 'Type A - Object 2', title_sl: 'Tip A - Objekt 2', parcel: '1, 2, 3' },
+            { src: './images/TIP-A/tip-a-3.jpg', title: 'Type A - Object 3', title_sl: 'Tip A - Objekt 3', parcel: '1, 2, 3' }
+        ];
+
+        const floorPlansB = [
+            { src: './images/TIP-B/tip-b-4.jpg', title: 'Type B - Object 1', title_sl: 'Tip B - Objekt 4', parcel: '4, 5, 6, 7' },
+            { src: './images/TIP-B/tip-b-5.jpg', title: 'Type B - Object 2', title_sl: 'Tip B - Objekt 5', parcel: '4, 5, 6, 7' },
+            { src: './images/TIP-B/tip-b-6.jpg', title: 'Type B - Object 3', title_sl: 'Tip B - Objekt 6', parcel: '4, 5, 6, 7' },
+            { src: './images/TIP-B/tip-b-7.jpg', title: 'Type B - Object 3', title_sl: 'Tip B - Objekt 7', parcel: '4, 5, 6, 7' },
+        ];
+
+        let currentImageIndex = 0;
+        let currentFloorPlanIndex = 0;
+        let currentFloorPlanType = null;
+
+        // Gallery functions
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function updateLightboxImage() {
+            // First set opacity to 0 for transition
+            lightboxImage.classList.remove('active');
+
+            // After a short delay, update the image and fade it in
+            setTimeout(() => {
+                lightboxImage.src = galleryImages[currentImageIndex].src;
+
+                // Set title based on current language
+                const titleKey = currentLanguage === 'sl' ? 'title_sl' : 'title';
+                lightboxTitle.textContent = galleryImages[currentImageIndex][titleKey];
+
+                // Update counter
+                lightboxCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+
+                // Ensure the image is loaded before showing it
+                lightboxImage.onload = () => {
+                    lightboxImage.classList.add('active');
+                };
+            }, 300);
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxImage();
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateLightboxImage();
+        }
+
+        // Floor plans functions
+        function openFloorPlansLightbox(type, index) {
+            currentFloorPlanType = type;
+            currentFloorPlanIndex = index || 0;
+            updateFloorPlanImage();
+            
+            const lightbox = document.getElementById(type === 'A' ? 'floorplansA' : 'floorplansB');
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeFloorPlansLightbox() {
+            const lightbox = document.getElementById(currentFloorPlanType === 'A' ? 'floorplansA' : 'floorplansB');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function updateFloorPlanImage() {
+            const lightbox = document.getElementById(currentFloorPlanType === 'A' ? 'floorplansA' : 'floorplansB');
+            const lightboxImage = lightbox.querySelector('.lightbox-image');
+            const lightboxTitle = lightbox.querySelector('.lightbox-title');
+            const lightboxCounter = lightbox.querySelector('.lightbox-counter');
+            
+            const floorPlans = currentFloorPlanType === 'A' ? floorPlansA : floorPlansB;
+            
+            // First set opacity to 0 for transition
+            lightboxImage.classList.remove('active');
+            
+            // After a short delay, update the image and fade it in
+            setTimeout(() => {
+                lightboxImage.src = floorPlans[currentFloorPlanIndex].src;
+                
+                // Set title based on current language
+                const titleKey = currentLanguage === 'sl' ? 'title_sl' : 'title';
+                lightboxTitle.textContent = floorPlans[currentFloorPlanIndex][titleKey];
+                
+                // Update counter
+                lightboxCounter.textContent = `${currentFloorPlanIndex + 1} / ${floorPlans.length}`;
+                
+                // Ensure the image is loaded before showing it
+                lightboxImage.onload = () => {
+                    lightboxImage.classList.add('active');
+                };
+            }, 300);
+        }
+
+        function prevFloorPlanImage() {
+            const floorPlans = currentFloorPlanType === 'A' ? floorPlansA : floorPlansB;
+            currentFloorPlanIndex = (currentFloorPlanIndex - 1 + floorPlans.length) % floorPlans.length;
+            updateFloorPlanImage();
+        }
+
+        function nextFloorPlanImage() {
+            const floorPlans = currentFloorPlanType === 'A' ? floorPlansA : floorPlansB;
+            currentFloorPlanIndex = (currentFloorPlanIndex + 1) % floorPlans.length;
+            updateFloorPlanImage();
+        }
+
+        // Handle keyboard navigation
+        function handleKeyDown(e) {
+            // Handle main gallery keyboard navigation
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+                return;
+            }
+            
+            // Handle floor plans keyboard navigation
+            const floorplansA = document.getElementById('floorplansA');
+            const floorplansB = document.getElementById('floorplansB');
+            
+            if ((floorplansA && floorplansA.classList.contains('active')) || 
+                (floorplansB && floorplansB.classList.contains('active'))) {
+                if (e.key === 'Escape') closeFloorPlansLightbox();
+                if (e.key === 'ArrowLeft') prevFloorPlanImage();
+                if (e.key === 'ArrowRight') nextFloorPlanImage();
+            }
+        }
+
+        // Smooth scroll function
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Handle scroll events
+        function handleScroll() {
+			// Ensure pageYOffset is never negative
+			const scrollPosition = Math.max(0, window.pageYOffset);
+    
+			// Update scroll progress
+			const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const progress = totalHeight > 0 ? (scrollPosition / totalHeight) * 100 : 0;
+			
+			// Ensure progress is between 0 and 100
+			scrollProgress.style.width = Math.min(100, Math.max(0, progress)) + '%';
+
+            // Show/hide back to top button
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+
+            // Update active nav link
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+
+                if (window.pageYOffset >= (sectionTop - navHeight - 50)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize event listeners
+        function initEventListeners() {
+            // Language switchers
+            languageButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    updateLanguage(lang);
+                });
+            });
+
+            // Scroll event
+            window.addEventListener('scroll', handleScroll);
+
+            // Nav links click event
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('href').substring(1);
+                    scrollToSection(sectionId);
+
+                    // Close mobile menu if open
+                    const navbarCollapse = document.getElementById('navbarNav');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
+                    }
+                });
+            });
+
+            // Back to top button click event
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Gallery event listeners
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const index = parseInt(item.getAttribute('data-gallery-index'));
+                    openLightbox(index);
+                });
+            });
+
+            // View all gallery button
+            if (viewAllButton) {
+                viewAllButton.addEventListener('click', () => {
+                    openLightbox(0);
+                });
+            }
+
+            // Lightbox controls
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', closeLightbox);
+            }
+            
+            if (lightboxPrev) {
+                lightboxPrev.addEventListener('click', prevImage);
+            }
+            
+            if (lightboxNext) {
+                lightboxNext.addEventListener('click', nextImage);
+            }
+
+            // Close lightbox when clicking outside the image
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            // Floor plans event listeners
+            document.querySelectorAll('.card-body a[data-lang-key="view_floor_plans"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Check if this is Type A or Type B by looking at the nearby small text
+                    const smallText = link.closest('.d-flex').querySelector('small');
+                    const type = smallText.textContent.includes('1, 2, 3') ? 'A' : 'B';
+                    openFloorPlansLightbox(type, 0);
+                });
+            });
+
+            // Floor plans lightbox controls
+            const floorplansA = document.getElementById('floorplansA');
+            const floorplansB = document.getElementById('floorplansB');
+            
+            if (floorplansA) {
+                const closeA = floorplansA.querySelector('.lightbox-close');
+                const prevA = floorplansA.querySelector('.lightbox-prev');
+                const nextA = floorplansA.querySelector('.lightbox-next');
+                
+                if (closeA) closeA.addEventListener('click', closeFloorPlansLightbox);
+                if (prevA) prevA.addEventListener('click', prevFloorPlanImage);
+                if (nextA) nextA.addEventListener('click', nextFloorPlanImage);
+                
+                floorplansA.addEventListener('click', (e) => {
+                    if (e.target === floorplansA) {
+                        closeFloorPlansLightbox();
+                    }
+                });
+            }
+            
+            if (floorplansB) {
+                const closeB = floorplansB.querySelector('.lightbox-close');
+                const prevB = floorplansB.querySelector('.lightbox-prev');
+                const nextB = floorplansB.querySelector('.lightbox-next');
+                
+                if (closeB) closeB.addEventListener('click', closeFloorPlansLightbox);
+                if (prevB) prevB.addEventListener('click', prevFloorPlanImage);
+                if (nextB) nextB.addEventListener('click', nextFloorPlanImage);
+                
+                floorplansB.addEventListener('click', (e) => {
+                    if (e.target === floorplansB) {
+                        closeFloorPlansLightbox();
+                    }
+                });
+            }
+
+            // Keyboard navigation
+            window.addEventListener('keydown', handleKeyDown);
+
+            // Touch swipe for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            if (lightbox) {
+                lightbox.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+
+                lightbox.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+            }
+            
+            if (floorplansA) {
+                floorplansA.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+
+                floorplansA.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleFloorPlanSwipe();
+                }, false);
+            }
+            
+            if (floorplansB) {
+                floorplansB.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+
+                floorplansB.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleFloorPlanSwipe();
+                }, false);
+            }
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left
+                    nextImage();
+                }
+                if (touchEndX > touchStartX + 50) {
+                    // Swipe right
+                    prevImage();
+                }
+            }
+            
+            function handleFloorPlanSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left
+                    nextFloorPlanImage();
+                }
+                if (touchEndX > touchStartX + 50) {
+                    // Swipe right
+                    prevFloorPlanImage();
+                }
+            }
+        }
+
+        // Init when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initEventListeners();
+            handleScroll(); // Call once to set initial state
+            updateLanguage(currentLanguage); // Set initial language
+        });
+    </script>
+
+    <div id="floorplansA" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <div class="lightbox-container">
+                <button class="lightbox-prev">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <div class="lightbox-image-container">
+                    <img src="" alt="" class="lightbox-image">
+                </div>
+                <button class="lightbox-next">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+            <div class="lightbox-caption">
+                <p class="lightbox-title"></p>
+                <p class="lightbox-counter"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="floorplansB" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <div class="lightbox-container">
+                <button class="lightbox-prev">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <div class="lightbox-image-container">
+                    <img src="" alt="" class="lightbox-image">
+                </div>
+                <button class="lightbox-next">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+            <div class="lightbox-caption">
+                <p class="lightbox-title"></p>
+                <p class="lightbox-counter"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
